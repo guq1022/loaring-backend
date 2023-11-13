@@ -1,4 +1,3 @@
-
 spring:
   config:
     activate:
@@ -10,15 +9,13 @@ spring:
       max-lifetime: 1800000
   jpa:
     open-in-view: true
-    show-sql: true
     generate-ddl: false
     hibernate:
-      ddl-auto: none
-
+      ddl-auto: create-drop
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        show_sql: false
+        format_sql: false
         use_sql_comments: true
         hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
@@ -36,9 +33,9 @@ spring:
     active: local
     default: local
     group:
-      local: local
+      local: local, common
       test: test, common
-      dev:  dev, common
+      dev: dev, common
       prod: prod, common
 
 ---
@@ -50,10 +47,11 @@ spring:
     activate:
       on-profile: local, test
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test
-    username: sa
-    password:
+    hikari:
+      jdbc-url: jdbc:h2:tcp://localhost/~/test
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: 1234
 
 server:
   port: 8080
@@ -67,11 +65,11 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url:
-    username:
-    password:
-
+    hikari:
+      jdbc-url:
+      username:
+      password:
+      driver-class-name: org.mariadb.jdbc.Driver
 
 ---
 
@@ -82,10 +80,11 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url:
-    username:
-    password:
+    hikari:
+      jdbc-url:
+      username:
+      password:
+      driver-class-name: org.mariadb.jdbc.Driver
 
 server:
   port: 274832

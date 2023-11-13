@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<property name="LOG_SERVICE_NAME" value="loaRing"/>
+	<property name="LOG_DIR_PATH" value="../logs"/>
+
+	<!-- Default Log  -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<!-- Create LOG FILE -->
+	<appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR_PATH}/${LOG_SERVICE_NAME}/log.log</file>
+		<encoder>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_DIR_PATH}/${LOG_SERVICE_NAME}/log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>20MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+
+</included>

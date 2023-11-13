@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration>
+<configuration scan="true" scanPeriod="1 minutes">
+
+	<include resource="config/log/logback-default.xml"/>
+
+	<!-- ROOT -->
+	<root level="ERROR">
+		<appender-ref ref="CONSOLE"/>
+	</root>
+
+	<!-- Project -->
+	<logger name="com.lams.loaring" level="DEBUG"/>
+
+	<!-- Spring -->
+	<logger name="org.springframework" level="ERROR"/>
+	<logger name="org.springframework.core" level="ERROR"/>
+	<logger name="org.springframework.beans" level="ERROR"/>
+	<logger name="org.springframework.context" level="ERROR"/>
+	<logger name="org.springframework.web" level="ERROR"/>
+	<logger name="com.springframework.data" level="ERROR"/>
+	<logger name="org.springframework.security" level="DEBUG"/>
+
+	<!-- DataBase -->
+	<logger name="org.hibernate.SQL" level="OFF"/>
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="OFF"/>
+
+</configuration>
