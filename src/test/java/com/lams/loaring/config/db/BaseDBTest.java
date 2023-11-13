@@ -1,4 +1,4 @@
-package com.lams.loaring.base.db;
+package com.lams.loaring.config.db;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -18,7 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 @Retention(RetentionPolicy.RUNTIME)
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Repository.class))
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-@Import(TestJPAConfiguration.class)
-public @interface DBTest {
+@Import(BaseTestDBConfiguration.class)
+public @interface BaseDBTest {
 
 }

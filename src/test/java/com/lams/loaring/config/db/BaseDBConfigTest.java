@@ -1,10 +1,10 @@
-package com.lams.loaring.base.db;
+package com.lams.loaring.config.db;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class DBConfigTest extends DBSession {
+public class BaseDBConfigTest extends BaseDBHelper {
 
 	@Test
 	void 체크() {

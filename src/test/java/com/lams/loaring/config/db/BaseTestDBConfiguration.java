@@ -1,4 +1,4 @@
-package com.lams.loaring.base.db;
+package com.lams.loaring.config.db;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
 @TestConfiguration
-public class TestJPAConfiguration {
+public class BaseTestDBConfiguration {
 
 	@PersistenceContext
 	private EntityManager entityManager;

@@ -1,4 +1,4 @@
-package com.lams.loaring.config.base;
+package com.lams.loaring.config.application;
 
 import java.net.InetAddress;
 import java.util.Arrays;
