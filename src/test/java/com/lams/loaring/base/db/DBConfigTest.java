@@ -1,4 +1,4 @@
-package com.lams.lostark.base.db;
+package com.lams.loaring.base.db;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

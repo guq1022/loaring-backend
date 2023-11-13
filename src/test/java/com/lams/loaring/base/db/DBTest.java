@@ -1,4 +1,4 @@
-package com.lams.lostark.base.db;
+package com.lams.loaring.base.db;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

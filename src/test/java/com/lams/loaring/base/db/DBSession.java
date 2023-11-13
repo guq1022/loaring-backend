@@ -1,4 +1,4 @@
-package com.lams.lostark.base.db;
+package com.lams.loaring.base.db;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

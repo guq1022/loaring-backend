@@ -1,4 +1,4 @@
-package com.lams.lostark.base;
+package com.lams.loaring.base;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
