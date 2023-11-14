@@ -5,13 +5,10 @@ import org.springframework.stereotype.Component;
 
 
 /**
- *
- * @since 2023.11.13
  * @author vic
  * @version 1.0
- *
  * @see java.util.Base64
- *
+ * @since 2023.11.13
  */
 
 @Component

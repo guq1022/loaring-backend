@@ -6,7 +6,7 @@
 	<!-- Default Log  -->
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</Pattern>
+			<Pattern>[%d{HH:mm:ss.SSS}][%-5level][%logger{36}.%method:line%line][%X{trxId}] - %msg%n</Pattern>
 		</layout>
 	</appender>
 
@@ -14,7 +14,7 @@
 	<appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_DIR_PATH}/${LOG_SERVICE_NAME}/log.log</file>
 		<encoder>
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</Pattern>
+			<Pattern>[%d{HH:mm:ss.SSS}][%-5level][%logger{36}.%method:line%line][%X{trxId}] - %msg%n</Pattern>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>${LOG_DIR_PATH}/${LOG_SERVICE_NAME}/log.%d{yyyy-MM-dd}.%i.log

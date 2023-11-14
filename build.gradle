@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -41,6 +42,9 @@ dependencies {
     // Util: LOMBOK
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Util: Apache
+    implementation 'commons-io:commons-io:2.11.0'
 
     // DB: Querydsl
     implementation 'com.querydsl:querydsl-apt:5.0.0:jakarta'

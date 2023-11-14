@@ -51,7 +51,7 @@ spring:
       jdbc-url: jdbc:h2:tcp://localhost/~/test
       driver-class-name: org.h2.Driver
       username: sa
-      password: 1234
+      password:
 
 server:
   port: 8080
