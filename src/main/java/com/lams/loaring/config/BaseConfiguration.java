@@ -1,7 +1,5 @@
 package com.lams.loaring.config;
 
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -22,8 +20,17 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 /**
  * <p>셋팅</p>
@@ -32,7 +39,7 @@ import org.springframework.context.annotation.Configuration;
  * </ul>
  */
 @Configuration
-public class BaseConfiguration {
+public class BaseConfiguration implements WebMvcConfigurer {
 
 	public static final String KEY = "key";
 	public static final String COMMENT = "comment";
@@ -60,15 +67,21 @@ public class BaseConfiguration {
 				final JavaType type,
 				BeanDescription beanDesc,
 				final JsonDeserializer<?> deserializer) {
+
 				return new JsonDeserializer<>() {
 					@Override
 					public Enum deserialize(JsonParser jp, DeserializationContext ctxt)
 						throws IOException {
-						Class<? extends Enum> rawClass = (Class<Enum<?>>) type.getRawClass();
+						Class<? extends Enum> baseEnumClass = (Class<? extends Enum>) type.getRawClass();
 						final JsonNode jsonNode = jp.readValueAsTree();
-						String key = jsonNode.get(KEY)
-						                     .asText();
-						return Enum.valueOf(rawClass, key);
+						String key = jsonNode.asText();
+
+						// 해당 키가 없는 경우 오류
+						try {
+							return Enum.valueOf(baseEnumClass, key);
+						} catch (Exception e) {
+							return null;
+						}
 					}
 				};
 			}
@@ -79,12 +92,10 @@ public class BaseConfiguration {
 		var objectMapper = new ObjectMapper();
 
 		objectMapper.configOverride(List.class)
-		            .setSetterInfo(JsonSetter.Value.forValueNulls(Nulls.AS_EMPTY))
-		            .setFormat(Value.forShape(Shape.ARRAY));
+			.setSetterInfo(JsonSetter.Value.forValueNulls(Nulls.AS_EMPTY));
 
 		objectMapper.configOverride(String.class)
-		            .setSetterInfo(JsonSetter.Value.forValueNulls(Nulls.AS_EMPTY))
-		            .setFormat(Value.forShape(Shape.STRING));
+			.setSetterInfo(JsonSetter.Value.forValueNulls(Nulls.AS_EMPTY));
 
 		return objectMapper
 			.registerModule(javaTimeModule)
@@ -92,6 +103,36 @@ public class BaseConfiguration {
 			.enable(SerializationFeature.INDENT_OUTPUT)
 			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
+	}
+
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasenames(
+			"classpath:/messages/message",
+			"classpath:/messages/validations/validation");
+		messageSource.setDefaultEncoding("UTF-8");
+		messageSource.setCacheSeconds(60);
+		return messageSource;
+	}
+
+	@Bean
+	public MessageSourceAccessor messageSourceAccessor() {
+		return new MessageSourceAccessor(messageSource());
+	}
+
+	@Override
+	public Validator getValidator() {
+		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+		bean.setValidationMessageSource(messageSource());
+		return bean;
+	}
+
+	@Bean
+	public LocaleResolver localeResolver() {
+		AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
+		localeResolver.setDefaultLocale(Locale.KOREA);
+		return localeResolver;
 	}
 
 }
