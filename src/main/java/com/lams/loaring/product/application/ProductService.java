@@ -4,11 +4,9 @@ import com.lams.loaring.product.entity.Product;
 import com.lams.loaring.product.entity.ProductRepository;
 import com.lams.loaring.product.infra.QProductRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +24,7 @@ public class ProductService {
         var findProduct = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("데이터가 존재하지 않습니다."));
 
-        findProduct.modifyPrice(new BigDecimal(price));
+        findProduct.modifyPrice(price);
 
         return findProduct;
     }

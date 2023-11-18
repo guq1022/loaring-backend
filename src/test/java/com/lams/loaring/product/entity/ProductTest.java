@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
-import java.math.BigDecimal;
-
 /**
  * 사용자가 상품을 등록할 수 있게 해주세요.
  * 상품은 수량, 단가를 입력할 수 있어야한다.
@@ -25,7 +23,7 @@ public class ProductTest {
 
     @Test
     void 상품_등록() {
-        Product product = new Product(1L, new BigDecimal("1000"));
+        Product product = new Product(1L, "1000");
         productRepository.save(product);
     }
 
@@ -33,24 +31,24 @@ public class ProductTest {
     void 상품_등록_빌더패턴() {
         Product product = Product.builder()
                 .id(1L)
-                .price(new BigDecimal("1000"))
+                .price("1000")
                 .build();
         productRepository.save(product);
     }
 
     @Test
     void 상품_등록_스태틱_메소드_패턴() {
-        Product product = Product.create(1L, new BigDecimal("1000"));
+        Product product = Product.create(1L, "1000");
         productRepository.save(product);
     }
 
     @Test
     void 상품_단가_수정() {
-        Product product = new Product(1L, new BigDecimal("1000"));
+        Product product = new Product(1L, "1000");
         productRepository.save(product);
 
         Product findProduct = productRepository.findById(1L).orElseThrow();
-        findProduct.modifyPrice(new BigDecimal("2000"));
+        findProduct.modifyPrice("2000");
 
         Product updateProduct = productRepository.findById(1L).orElseThrow();
         Assertions.assertThat(updateProduct.getPrice()).isEqualTo(new Price(2_000L));

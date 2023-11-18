@@ -16,6 +16,8 @@ public class Price {
 
     private static Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
+    public static String VALID_IS_NOT_NUMBER_MESSAGE = "정수가 아닙니다.";
+
     private BigDecimal price;
 
     public Price(BigDecimal price) {
@@ -28,15 +30,9 @@ public class Price {
 
     public Price(String price) {
         if(isNumeric(price)) {
-            throw new IllegalArgumentException("정수가 아닙니다.");
+            throw new IllegalArgumentException(VALID_IS_NOT_NUMBER_MESSAGE);
         }
         this.price = new BigDecimal(price);
-    }
-
-    public Price add(String price) {
-        this.price.add(new BigDecimal(price));
-
-        return new Price(this.price);
     }
 
     public boolean isNumeric(String strNum) {
