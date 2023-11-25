@@ -8,7 +8,64 @@
 - 서비스 테스트 관점 프로세스간의 `행위 테스트` 작성.
 - API 테스트 관점 `API의 작성 유무 및 문서화` 작성.
 
+
+# GIT 작업하기
+```shell
+
+# 1.동기화 upstream sync 
+git remote update
+git fetch upstream main
+
+# 내 브랜치 위치를 확인한다. 
+
+# 내가 원하는 위치가 아닌경우 브랜치 이동 (선택) 
+git checkout 브랜치명 
+
+# 내 브랜치에 병합  -> (main)
+git merge upstream/main
+   
+# 새로운 기능 생성 
+git checkout -b feat/브랜치명
+
+# 만약 동기화 안 했으면  "1.동기화 upstream sync" 작업을 수행
+git commit -am "커밋명"
+
+# 내 push origin  
+git push origin feat/브랜치명
+ 
+```
+
+## 머지가 된 경우 
+```shell
+git remote update
+git fetch upstream main
+
+# 내가 머지하고 싶은 브랜치 
+git merge upstream/main    
+```
+
+
+
+
+
 ## 유의사항
+
+## 커밋 메시지 규칙
+````text
+feat : 새로운 기능 추가
+ex) 
+feat : Add ~
+feat : Modify ~
+feat : Remove ~
+
+refactor : 코드 리펙토링
+test : 테스트 코드, 리펙토링 테스트 코드 추가
+fix : 버그 수정
+
+docs : 문서 수정
+style : 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
+chore : 빌드 업무 수정, 패키지 매니저 수정
+````
 
 - config 변경시 `branch`를 생성하여 별도 PR로 작성
 
@@ -24,6 +81,8 @@ git push origin feature/config-수정명
 
 # 3. github 에서 pr 작성 
 ```
+
+##
 
 # 2.명명규칙
 
