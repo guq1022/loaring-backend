@@ -6,7 +6,7 @@
 	<include resource="config/log/logback-default.xml"/>
 
 	<!-- ROOT -->
-	<root level="ERROR">
+	<root level="INFO">
 		<appender-ref ref="CONSOLE"/>
 	</root>
 

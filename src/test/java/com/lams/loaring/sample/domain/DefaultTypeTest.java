@@ -8,7 +8,7 @@ class DefaultTypeTest {
 
 	@Test
 	void 기본_타입() {
-		DefaultType defaultType = DefaultType.valueOf("general");
+		DefaultType defaultType = DefaultType.valueOf("GENERAL");
 
 		Assertions.assertEquals(defaultType, DefaultType.GENERAL);
 	}

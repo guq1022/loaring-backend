@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@DataJpaTest(includeFilters = @ComponentScan.Filter(Repository.class))
+@DataJpaTest(includeFilters = @ComponentScan.Filter(Repository.class), showSql = false)
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Import(BaseTestDBConfiguration.class)
 public @interface BaseDBTest {

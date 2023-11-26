@@ -5,6 +5,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 @ExtendWith(MockitoExtension.class)
-public class BaseServiceTest {
+public class BaseServiceHelper {
+
 	protected MockMvc mockMvc;
 }

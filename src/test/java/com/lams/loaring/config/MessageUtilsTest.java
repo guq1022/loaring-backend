@@ -25,7 +25,7 @@ class MessageUtilsTest {
 	void notBlank() {
 		String message = MessageUtils.of("NotBlank");
 		assertThat(message)
-			.isEqualTo("공백일 수 없습니다!");
+			.isEqualTo("공백일 수 없습니다.");
 	}
 
 }

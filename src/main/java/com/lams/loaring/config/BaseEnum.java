@@ -1,11 +1,11 @@
 package com.lams.loaring.config;
 
 
-public interface BaseEnum {
+public interface BaseEnum<T> {
 
 	String getKey();
 
-	String getCode();
+	T getCode();
 
 	String getComment();
 }

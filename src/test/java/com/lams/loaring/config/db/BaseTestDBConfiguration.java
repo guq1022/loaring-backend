@@ -1,6 +1,8 @@
 package com.lams.loaring.config.db;
 
+import com.p6spy.engine.spy.P6SpyOptions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -17,4 +19,10 @@ public class BaseTestDBConfiguration {
 		return new JPAQueryFactory(entityManager);
 	}
 
+
+	@PostConstruct
+	public void setLogMessageFormat() {
+		P6SpyOptions.getActiveInstance()
+			.setLogMessageFormat(P6spySqlFormatConfiguration.class.getName());
+	}
 }

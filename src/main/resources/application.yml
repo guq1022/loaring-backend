@@ -26,6 +26,12 @@ jasypt:
 logging:
   config: classpath:logback.xml
 
+decorator:
+  datasource:
+    p6spy:
+      multiline: false
+
+
 ---
 
 spring:

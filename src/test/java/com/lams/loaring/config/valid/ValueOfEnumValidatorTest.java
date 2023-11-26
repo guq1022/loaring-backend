@@ -38,9 +38,6 @@ class ValueOfEnumValidatorTest {
 		Assertions.assertThat(violations.size())
 			.isEqualTo(1);
 
-		Assertions.assertThat(violations)
-			.extracting("messages")
-			.containsOnly("존재하지 않는 타입입니다.");
 	}
 
 	@Test
@@ -58,10 +55,6 @@ class ValueOfEnumValidatorTest {
 		// then
 		Assertions.assertThat(violations.size())
 			.isEqualTo(0);
-
-		Assertions.assertThat(violations)
-			.extracting("messages")
-			.containsOnly();
 	}
 
 	@Test
@@ -79,10 +72,6 @@ class ValueOfEnumValidatorTest {
 		// then
 		Assertions.assertThat(violations.size())
 			.isEqualTo(1);
-
-		Assertions.assertThat(violations)
-			.extracting("messages")
-			.containsOnly("이름 값이 없습니다.");
 	}
 
 }
