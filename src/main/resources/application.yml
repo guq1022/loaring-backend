@@ -11,13 +11,17 @@ spring:
     open-in-view: false
     generate-ddl: false
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     properties:
       hibernate:
         show_sql: false
         format_sql: false
         use_sql_comments: true
         hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  sql:
+    init:
+      mode: always
+
 
 jasypt:
   encryptor:
@@ -31,6 +35,11 @@ decorator:
     p6spy:
       multiline: false
 
+security:
+  jwt:
+    token:
+      secret-key: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      expire-length: 30
 
 ---
 
@@ -58,6 +67,11 @@ spring:
       driver-class-name: org.h2.Driver
       username: sa
       password:
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 server:
   port: 8080
@@ -94,5 +108,3 @@ spring:
 
 server:
   port: 274832
-
-

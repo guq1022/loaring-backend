@@ -23,7 +23,7 @@ public @interface ValidEnum {
 
 	Class<? extends BaseEnum> enumClass();
 
-	String message() default "ValidEnum";
+	String message() default "{field.constraints.ValidEnum.message}";
 
 	Class<?>[] groups() default {};
 

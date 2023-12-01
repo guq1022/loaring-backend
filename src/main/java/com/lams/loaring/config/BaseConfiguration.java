@@ -17,6 +17,9 @@ import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.lams.loaring.config.dto.BaseResponse.BaseData;
+import com.lams.loaring.config.dto.BaseResponseUtils;
+import com.lams.loaring.config.utils.BaseMapperUtils;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,7 +46,7 @@ public class BaseConfiguration implements WebMvcConfigurer {
 
 	public static final String KEY = "key";
 	public static final String COMMENT = "comment";
-
+	
 	@Bean
 	public ObjectMapper objectMapper() {
 
@@ -57,6 +60,15 @@ public class BaseConfiguration implements WebMvcConfigurer {
 				jgen.writeStartObject();
 				jgen.writeStringField(KEY, value.getKey());
 				jgen.writeStringField(COMMENT, value.getComment());
+				jgen.writeEndObject();
+			}
+		});
+
+		simpleModule.addSerializer(BaseData.class, new StdSerializer<>(BaseData.class) {
+			@Override
+			public void serialize(BaseData value, JsonGenerator jgen, SerializerProvider provider)
+				throws IOException {
+				jgen.writeStartObject();
 				jgen.writeEndObject();
 			}
 		});
@@ -133,6 +145,16 @@ public class BaseConfiguration implements WebMvcConfigurer {
 		AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
 		localeResolver.setDefaultLocale(Locale.KOREA);
 		return localeResolver;
+	}
+
+	@Bean
+	public BaseResponseUtils responseUtils() {
+		return new BaseResponseUtils(baseMapperUtils());
+	}
+
+	@Bean
+	BaseMapperUtils baseMapperUtils() {
+		return new BaseMapperUtils(objectMapper());
 	}
 
 }

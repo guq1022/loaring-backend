@@ -21,9 +21,12 @@
 	<logger name="org.springframework.web" level="ERROR"/>
 	<logger name="com.springframework.data" level="ERROR"/>
 	<logger name="org.springframework.security" level="DEBUG"/>
+	<logger name="org.springframework.security" level="DEBUG"/>
 
 	<!-- DataBase -->
 	<logger name="org.hibernate.SQL" level="OFF"/>
 	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="OFF"/>
+	<logger name="redis.clients" level="DEBUG"/>
+
 
 </configuration>
