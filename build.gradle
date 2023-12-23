@@ -34,6 +34,7 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -93,6 +94,9 @@ dependencies {
     // DB: QueryDSL LOG
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 
+    // Util: Test
+    implementation 'com.github.seunghoona:restdocsAdapter:0.8:plain'
+
 }
 
 
@@ -134,4 +138,12 @@ tasks.named('test') {
 
 clean {
     delete file('src/main/generated')
+}
+
+bootJar {
+    dependsOn copySwaggerUI
+}
+
+compileTestJava {
+    dependsOn copySwaggerUI
 }
